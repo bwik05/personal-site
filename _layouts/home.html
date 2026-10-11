@@ -1,0 +1,33 @@
+---
+layout: default
+---
+<section class="intro" aria-labelledby="intro-title">
+  <p class="eyebrow">Carnet de développement</p>
+  <h1 id="intro-title">Des notes pour construire, comprendre et partager.</h1>
+  <p>Des articles courts, du code quand il aide, et de l’espace pour les idées plus longues.</p>
+</section>
+
+<section aria-labelledby="articles-title">
+  <div class="section-heading">
+    <h2 id="articles-title">Articles</h2>
+    <span>{{ site.posts.size }} {% if site.posts.size == 1 %}article{% else %}articles{% endif %}</span>
+  </div>
+  {% if site.posts.size > 0 %}
+  <ol class="post-list">
+    {% for post in site.posts %}
+    <li>
+      <a class="post-link" href="{{ post.url | relative_url }}">
+        <span class="post-date"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%d.%m.%Y' }}</time></span>
+        <span class="post-summary">
+          <strong>{{ post.title | escape }}</strong>
+          {% if post.description %}<span>{{ post.description | escape }}</span>{% endif %}
+        </span>
+        <span class="post-arrow" aria-hidden="true">↗</span>
+      </a>
+    </li>
+    {% endfor %}
+  </ol>
+  {% else %}
+  <p class="empty-state">Le premier article arrive bientôt.</p>
+  {% endif %}
+</section>

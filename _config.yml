@@ -1,0 +1,13 @@
+title: Notes de code
+description: Un carnet de développement, en texte d'abord.
+url: https://bwik05.github.io
+baseurl: /personal-site
+lang: fr
+timezone: Europe/Zurich
+markdown: kramdown
+permalink: /articles/:title/
+future: false
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
