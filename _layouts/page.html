@@ -1,10 +1,10 @@
 ---
 layout: default
 ---
-<article class="article">
+<article class="article{% if page.url == '/explorer/' %} explorer-page{% endif %}">
   <header class="article-header">
     <p class="eyebrow">{{ site.title }}</p>
     <h1>{{ page.title | escape }}</h1>
   </header>
-  <div class="prose">{{ content }}</div>
+  <div class="{% if page.url == '/explorer/' %}explorer-content{% else %}prose{% endif %}">{{ content }}</div>
 </article>

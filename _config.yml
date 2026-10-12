@@ -1,5 +1,5 @@
 title: Notes de code
-description: Un carnet de développement, en texte d'abord.
+description: Un jardin numérique de notes, d'idées et de projets en cours.
 url: https://bwik05.github.io
 baseurl: /personal-site
 lang: fr
@@ -7,6 +7,16 @@ timezone: Europe/Zurich
 markdown: kramdown
 permalink: /articles/:title/
 future: false
+collections:
+  notes:
+    output: true
+    permalink: /notes/:name/
+defaults:
+  - scope:
+      path: ""
+      type: notes
+    values:
+      layout: note
 exclude:
   - README.md
   - Gemfile

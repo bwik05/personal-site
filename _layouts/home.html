@@ -1,33 +1,125 @@
 ---
 layout: default
 ---
-<section class="intro" aria-labelledby="intro-title">
-  <p class="eyebrow">Carnet de développement</p>
-  <h1 id="intro-title">Des notes pour construire, comprendre et partager.</h1>
-  <p>Des articles courts, du code quand il aide, et de l’espace pour les idées plus longues.</p>
+
+{% assign recent_notes = site.notes | sort: 'date' | reverse %}
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-copy">
+    <p class="eyebrow">
+      <span class="live-dot" aria-hidden="true"></span> Un espace en croissance
+    </p>
+    <h1 id="hero-title">Les idées poussent <em>en réseau.</em></h1>
+    <p class="hero-lead">
+      Un jardin numérique pour relier les découvertes, les questions et les
+      projets. Entrez par une idée, puis suivez les liens.
+    </p>
+    <div class="hero-actions">
+      <a class="button button-primary" href="{{ '/explorer/' | relative_url }}"
+        >Explorer le jardin <span aria-hidden="true">↗</span></a
+      ><a class="text-link" href="{{ '/a-propos/' | relative_url }}"
+        >L’idée derrière ce site <span aria-hidden="true">→</span></a
+      >
+    </div>
+  </div>
+  <div class="garden-art" aria-hidden="true">
+    <span class="orbit orbit-one"></span><span class="orbit orbit-two"></span
+    ><span class="garden-node node-one">idées</span
+    ><span class="garden-node node-two">notes</span
+    ><span class="garden-node node-three">liens</span
+    ><span class="garden-node node-four">projets</span
+    ><span class="garden-center">✳</span>
+  </div>
 </section>
 
-<section aria-labelledby="articles-title">
+<section class="garden-section" aria-labelledby="paths-title">
   <div class="section-heading">
-    <h2 id="articles-title">Articles</h2>
-    <span>{{ site.posts.size }} {% if site.posts.size == 1 %}article{% else %}articles{% endif %}</span>
+    <div>
+      <p class="eyebrow">Choisir un chemin</p>
+      <h2 id="paths-title">Commencer quelque part</h2>
+    </div>
+    <span>01 / Explorer</span>
   </div>
-  {% if site.posts.size > 0 %}
-  <ol class="post-list">
-    {% for post in site.posts %}
-    <li>
-      <a class="post-link" href="{{ post.url | relative_url }}">
-        <span class="post-date"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%d.%m.%Y' }}</time></span>
-        <span class="post-summary">
-          <strong>{{ post.title | escape }}</strong>
-          {% if post.description %}<span>{{ post.description | escape }}</span>{% endif %}
-        </span>
-        <span class="post-arrow" aria-hidden="true">↗</span>
-      </a>
-    </li>
-    {% endfor %}
-  </ol>
-  {% else %}
-  <p class="empty-state">Le premier article arrive bientôt.</p>
-  {% endif %}
+  <div class="path-grid">
+    <a
+      class="path-card path-notes"
+      href="{{ '/explorer/' | relative_url }}#notes"
+      ><span class="path-icon" aria-hidden="true">✳</span
+      ><span class="path-label">Notes</span><strong>Une idée à la fois.</strong
+      ><span class="path-description"
+        >Des fragments courts qui peuvent évoluer et se relier.</span
+      ><span class="path-arrow" aria-hidden="true">↗</span></a
+    >
+    <a
+      class="path-card path-articles"
+      href="{{ '/explorer/' | relative_url }}#articles"
+      ><span class="path-icon" aria-hidden="true">↗</span
+      ><span class="path-label">Articles</span><strong>Prendre du recul.</strong
+      ><span class="path-description"
+        >Des textes plus aboutis pour raconter un cheminement.</span
+      ><span class="path-arrow" aria-hidden="true">↗</span></a
+    >
+    <a
+      class="path-card path-topics"
+      href="{{ '/explorer/' | relative_url }}#sujets"
+      ><span class="path-icon" aria-hidden="true">⌘</span
+      ><span class="path-label">Sujets</span
+      ><strong>Suivre les connexions.</strong
+      ><span class="path-description"
+        >Entrer par un thème et découvrir ce qui s’y rattache.</span
+      ><span class="path-arrow" aria-hidden="true">↗</span></a
+    >
+  </div>
 </section>
+
+<section class="garden-section recent-section" aria-labelledby="recent-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Dans le jardin</p>
+      <h2 id="recent-title">À découvrir</h2>
+    </div>
+    <a class="section-link" href="{{ '/explorer/' | relative_url }}"
+      >Tout explorer ↗</a
+    >
+  </div>
+  <div class="entry-grid">
+    {% for note in recent_notes limit: 2 %}<a
+      class="entry-card"
+      href="{{ note.url | relative_url }}"
+      ><span class="entry-type"
+        >✳ Note {% if note.status %}· {{ note.status | escape }}{% endif %}</span
+      >
+      <h3>{{ note.title | escape }}</h3>
+      <p>
+        {{ note.description | default: note.excerpt | strip_html | truncate: 130 | escape }}
+      </p>
+      <span class="entry-bottom"
+        >Ouvrir la note <span aria-hidden="true">↗</span></span
+      ></a
+    >{% endfor %} {% for post in site.posts limit: 2 %}<a
+      class="entry-card"
+      href="{{ post.url | relative_url }}"
+      ><span class="entry-type"
+        >↗ Article ·
+        <time datetime="{{ post.date | date: '%Y-%m-%d' }}"
+          >{{ post.date | date: '%d.%m.%Y' }}</time
+        ></span
+      >
+      <h3>{{ post.title | escape }}</h3>
+      <p>
+        {{ post.description | default: post.excerpt | strip_html | truncate: 130 | escape }}
+      </p>
+      <span class="entry-bottom"
+        >Lire l’article <span aria-hidden="true">↗</span></span
+      ></a
+    >{% endfor %}
+  </div>
+</section>
+
+<aside class="garden-note">
+  <span aria-hidden="true">✳</span>
+  <p>
+    Un jardin n’a pas de dernière page. Chaque note peut devenir le point de
+    départ d’un autre chemin.
+  </p>
+  <a href="{{ '/explorer/' | relative_url }}">Trouver un chemin →</a>
+</aside>

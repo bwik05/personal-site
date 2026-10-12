@@ -1,61 +1,53 @@
 # Notes de code
 
-Blog minimaliste en Markdown, publié par GitHub Pages à l’adresse **https://bwik05.github.io/personal-site/**. Jekyll transforme les fichiers Markdown en pages ; il n’y a ni base de données ni interface d’administration à maintenir.
+Jardin numérique en Markdown, publié avec Jekyll et GitHub Pages à l’adresse **https://bwik05.github.io/personal-site/**.
 
-## Publier un article depuis GitHub
+## Ajouter une note
 
-1. Ouvrir le dossier [`_posts`](https://github.com/bwik05/personal-site/tree/main/_posts) et cliquer sur **Add file → Create new file**.
-2. Nommer le fichier `AAAA-MM-JJ-mon-titre.md`, avec la date du jour et un titre court sans accents ni espaces.
-3. Coller ce modèle et écrire sous la deuxième ligne `---` :
-
-   ```markdown
-   ---
-   layout: post
-   title: Mon titre
-   description: Une phrase qui résume l'article.
-   ---
-
-   Mon premier paragraphe.
-
-   ## Un intertitre
-
-   La suite de mon article.
-   ```
-
-4. Cliquer sur **Commit changes**. Le site se met à jour automatiquement, généralement en quelques minutes.
-
-Le fichier `2026-10-11-bienvenue.md` est un exemple publiable : modifie-le ou supprime-le quand ton premier vrai article est prêt.
-
-## Ajouter une image
-
-Déposer l’image dans `assets/images/`, puis l’insérer dans l’article :
-
-```markdown
-![Description de l'image]({{ '/assets/images/mon-image.webp' | relative_url }})
-```
-
-La description entre crochets aide les lecteurs qui utilisent un lecteur d’écran. Un fichier WebP ou JPEG optimisé garde la page rapide.
-
-## Ajouter une page
-
-Créer `ma-page.md` à la racine :
+Créer un fichier dans [`_notes`](https://github.com/bwik05/personal-site/tree/main/_notes), par exemple `ma-decouverte.md` :
 
 ```markdown
 ---
-layout: page
-title: Ma page
-permalink: /ma-page/
+title: Ma découverte
+description: Une phrase pour présenter cette idée.
+date: 2026-10-12
+status: en croissance
+tags:
+  - développement
+  - outils
 ---
 
-Contenu de la page.
+Une idée, une question ou un lien utile.
+
+Voir aussi [une autre note]({{ '/notes/autre-note/' | relative_url }}).
 ```
 
-La page À propos est dans `a-propos.md`. Pour l’ajouter au menu, modifier `_layouts/default.html`.
+Une note n’a pas besoin d’être définitive. Les pages qui partagent un sujet dans `tags` sont proposées comme connexions au bas de la page. La date est facultative ; elle sert seulement à ordonner les notes sur l’accueil et dans l’explorateur.
 
-## Modifier l’apparence
+## Publier un article
 
-- Titre, description et adresse : `_config.yml`
-- Couleurs, typographie et espacements : `assets/css/style.css`
-- Structure de la page d’accueil : `_layouts/home.html`
+Créer `AAAA-MM-JJ-mon-titre.md` dans [`_posts`](https://github.com/bwik05/personal-site/tree/main/_posts) :
 
-Les liens internes utilisent `relative_url`, ce qui garde les images et les pages correctes sous `/personal-site/`. Le flux d’articles est disponible dans `feed.xml`.
+```markdown
+---
+layout: post
+title: Mon titre
+description: Une phrase qui résume l'article.
+tags:
+  - développement
+---
+
+Mon premier paragraphe.
+```
+
+Les articles restent accessibles par `/articles/mon-titre/`. Les sujets relient notes et articles. Utiliser toujours le même libellé pour un même sujet.
+
+## Modifier le site
+
+- Apparence : `assets/css/style.css`
+- Accueil : `_layouts/home.html`
+- Page Explorer : `explorer.md`
+- Liens entre pages : `_includes/related.html`
+- Titre, adresse et collections : `_config.yml`
+
+Les liens internes utilisent `relative_url` pour fonctionner sous `/personal-site/`. Le flux RSS des articles est disponible dans `feed.xml`.

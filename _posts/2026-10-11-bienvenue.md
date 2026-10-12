@@ -3,6 +3,8 @@ layout: post
 title: Bienvenue
 description: Un premier repère pour ce carnet de développement.
 reading_time: 1
+tags:
+  - jardin numérique
 ---
 
 Bienvenue dans ce carnet. Il est pensé pour publier des notes de développement simples à lire et faciles à retrouver.

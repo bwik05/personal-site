@@ -1,13 +1,31 @@
 ---
 layout: default
 ---
+
 <article class="article">
   <header class="article-header">
-    <a class="back-link" href="{{ '/' | relative_url }}">← Tous les articles</a>
-    <p class="eyebrow"><time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%d.%m.%Y' }}</time>{% if page.reading_time %} · {{ page.reading_time }} min de lecture{% endif %}</p>
+    <a class="back-link" href="{{ '/explorer/' | relative_url }}#articles"
+      >← Tous les articles</a
+    >
+    <p class="eyebrow">
+      ↗ Article <span class="meta-divider">·</span>
+      <time datetime="{{ page.date | date: '%Y-%m-%d' }}"
+        >{{ page.date | date: '%d.%m.%Y' }}</time
+      >{% if page.reading_time %} <span class="meta-divider">·</span> {{ page.reading_time }} min de lecture{% endif %}
+    </p>
     <h1>{{ page.title | escape }}</h1>
-    {% if page.description %}<p class="article-lead">{{ page.description | escape }}</p>{% endif %}
+    {% if page.description %}
+    <p class="article-lead">{{ page.description | escape }}</p>
+    {% endif %}{% if page.tags.size > 0 %}
+    <div class="tag-list" aria-label="Sujets">
+      {% for tag in page.tags %}<a
+        class="tag"
+        href="{{ '/explorer/' | relative_url }}?sujet={{ tag | url_encode }}"
+        >{{ tag | escape }}</a
+      >{% endfor %}
+    </div>
+    {% endif %}
   </header>
   <div class="prose">{{ content }}</div>
-  <p class="article-end"><a href="{{ '/' | relative_url }}">← Retour aux articles</a></p>
+  {% include related.html %}
 </article>
