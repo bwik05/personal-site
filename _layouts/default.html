@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.theme_version }}">
+    {% if page.layout == 'radio' %}<link rel="stylesheet" href="{{ '/assets/css/radio.css' | relative_url }}?v=1">{% endif %}
   </head>
   <body>
     <a class="skip-link" href="#contenu">Aller au contenu</a>
@@ -21,6 +22,7 @@
         <nav aria-label="Navigation principale">
           <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Accueil</a>
           <a href="{{ '/explorer/' | relative_url }}"{% if page.url == '/explorer/' %} aria-current="page"{% endif %}>Explorer</a>
+          <a href="{{ '/radio/' | relative_url }}"{% if page.url == '/radio/' %} aria-current="page"{% endif %}>Radio</a>
           <a href="{{ '/a-propos/' | relative_url }}"{% if page.url == '/a-propos/' %} aria-current="page"{% endif %}>À propos</a>
         </nav>
       </header>

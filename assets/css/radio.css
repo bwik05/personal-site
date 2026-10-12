@@ -1,0 +1,227 @@
+.radio-page {
+  padding: 72px 0 105px;
+}
+.radio-intro {
+  max-width: 730px;
+  margin-bottom: 43px;
+}
+.radio-intro h1 {
+  margin: 0;
+  font-size: clamp(3rem, 6vw, 5.4rem);
+}
+.radio-intro h1 em {
+  color: var(--blue);
+  font-style: normal;
+}
+.radio-intro > p:last-child {
+  max-width: 600px;
+  margin: 20px 0 0;
+  color: var(--muted);
+  font-size: 1.06rem;
+}
+.radio-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+  align-items: start;
+  gap: 22px;
+}
+.radio-player,
+.radio-playlist {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: var(--surface);
+  box-shadow: 0 15px 45px #263f740d;
+}
+.radio-art {
+  position: relative;
+  display: grid;
+  min-height: 290px;
+  place-items: center;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 45%, #f4f8ff, #dbe8fb 65%, #c8d9f4);
+}
+.radio-art:before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background-image: radial-gradient(#7396ce 1px, transparent 1px);
+  background-size: 22px 22px;
+  opacity: 0.28;
+}
+.radio-ring {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border: 1px solid #9fbbe5;
+  border-radius: 50%;
+}
+.radio-ring-two {
+  width: 370px;
+  height: 370px;
+  opacity: 0.6;
+}
+.radio-disc {
+  position: relative;
+  display: grid;
+  width: 145px;
+  height: 145px;
+  place-items: center;
+  border: 13px solid #bdd2f2;
+  border-radius: 50%;
+  background: var(--blue-deep);
+  box-shadow: 0 15px 30px #1b4c9733;
+  color: #fff;
+  font-size: 5.5rem;
+  line-height: 1;
+}
+.radio-player-body {
+  padding: 30px;
+}
+.radio-kicker {
+  margin: 0 0 12px;
+  color: var(--blue);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.radio-on-air {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: #5f8fda;
+  vertical-align: 1px;
+}
+.radio-player h2 {
+  margin: 0 0 6px;
+  font-size: 2.1rem;
+}
+.radio-artist {
+  margin: 0 0 22px;
+  color: var(--muted);
+}
+.radio-player audio {
+  display: block;
+  width: 100%;
+  accent-color: var(--blue);
+}
+.radio-help {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+.radio-playlist {
+  padding: 28px;
+}
+.radio-list-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 14px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.radio-list-heading h2 {
+  margin: 0;
+  font-size: 2rem;
+}
+.radio-list-heading > span {
+  padding-bottom: 4px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+.radio-tracks {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.radio-tracks li + li {
+  border-top: 1px solid var(--line);
+}
+.radio-track {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 32px 1fr 18px;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 4px;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+.radio-track:hover,
+.radio-track.is-current {
+  color: var(--blue);
+}
+.radio-track-number {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.radio-track-info {
+  display: grid;
+  gap: 2px;
+}
+.radio-track-info strong {
+  font-size: 0.93rem;
+}
+.radio-track-info small {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+.radio-track-action {
+  color: var(--blue);
+}
+.radio-note,
+.radio-empty {
+  color: var(--muted);
+  font-size: 0.83rem;
+}
+.radio-note {
+  margin: 24px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+.radio-empty {
+  margin: 20px 0;
+}
+@media (max-width: 800px) {
+  .radio-layout {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 620px) {
+  .radio-page {
+    padding: 50px 0 70px;
+  }
+  .radio-intro h1 {
+    font-size: clamp(2.8rem, 11vw, 4rem);
+  }
+  .radio-art {
+    min-height: 220px;
+  }
+  .radio-ring {
+    width: 170px;
+    height: 170px;
+  }
+  .radio-ring-two {
+    width: 280px;
+    height: 280px;
+  }
+  .radio-disc {
+    width: 115px;
+    height: 115px;
+    font-size: 4rem;
+  }
+  .radio-player-body,
+  .radio-playlist {
+    padding: 22px;
+  }
+}

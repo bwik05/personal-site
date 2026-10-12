@@ -1,0 +1,43 @@
+---
+layout: default
+---
+{% assign tracks = site.data.radio.tracks %}
+<section class="radio-page" aria-labelledby="radio-title">
+  <div class="radio-intro">
+    <p class="eyebrow">RHYZOM lab · Fréquence libre</p>
+    <h1 id="radio-title">Une bande-son pour <em>explorer.</em></h1>
+    <p>Des morceaux créés pour accompagner une pause, une lecture ou une idée qui prend forme. Lancez la musique quand vous en avez envie.</p>
+  </div>
+
+  <div class="radio-layout">
+    <section class="radio-player" aria-label="Lecteur de musique">
+      <div class="radio-art" aria-hidden="true"><span class="radio-ring radio-ring-one"></span><span class="radio-ring radio-ring-two"></span><span class="radio-disc">✳</span></div>
+      <div class="radio-player-body">
+        <p class="radio-kicker"><span class="radio-on-air" aria-hidden="true"></span> La radio du jardin</p>
+        {% if tracks.size > 0 %}
+        {% assign first_track = tracks.first %}
+        <h2 id="now-playing-title">{{ first_track.title | escape }}</h2>
+        <p class="radio-artist" id="now-playing-artist">{{ first_track.artist | default: site.title | escape }}</p>
+        <audio id="radio-audio" controls preload="none" src="{{ first_track.file | relative_url }}" aria-label="Lecteur audio"></audio>
+        <p class="radio-help">La lecture commence seulement après votre clic.</p>
+        {% else %}
+        <h2>Morceaux à venir</h2>
+        <p class="radio-artist">La première piste sera bientôt disponible.</p>
+        {% endif %}
+      </div>
+    </section>
+
+    <section class="radio-playlist" aria-labelledby="playlist-title">
+      <div class="radio-list-heading"><div><p class="eyebrow">À écouter</p><h2 id="playlist-title">La sélection</h2></div><span>{{ tracks.size }} {% if tracks.size == 1 %}titre{% else %}titres{% endif %}</span></div>
+      {% if tracks.size > 0 %}
+      <ol class="radio-tracks">
+        {% for track in tracks %}
+        <li><button class="radio-track{% if forloop.first %} is-current{% endif %}" type="button" data-src="{{ track.file | relative_url }}" data-title="{{ track.title | escape }}" data-artist="{{ track.artist | default: site.title | escape }}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}"><span class="radio-track-number">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span><span class="radio-track-info"><strong>{{ track.title | escape }}</strong><small>{{ track.artist | default: site.title | escape }}</small></span><span class="radio-track-action" aria-hidden="true">↗</span></button></li>
+        {% endfor %}
+      </ol>
+      {% else %}<p class="radio-empty">Un premier morceau rejoindra bientôt cette liste.</p>{% endif %}
+      <p class="radio-note">Cette page est faite pour rester ouverte pendant l’écoute. La musique s’arrête si vous la quittez.</p>
+    </section>
+  </div>
+</section>
+{% if tracks.size > 0 %}<script src="{{ '/assets/js/radio.js' | relative_url }}" defer></script>{% endif %}

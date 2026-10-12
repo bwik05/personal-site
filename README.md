@@ -51,3 +51,17 @@ Les articles restent accessibles par `/articles/mon-titre/`. Les sujets relient 
 - Titre, adresse et collections : `_config.yml`
 
 Les liens internes utilisent `relative_url` pour fonctionner sous `/personal-site/`. Le flux RSS des articles est disponible dans `feed.xml`.
+
+## Ajouter un morceau à la Radio
+
+Le répertoire d’import est [`assets/audio/`](assets/audio/). Sur ce Mac, placer les nouveaux morceaux dans `Téléchargements`, puis lancer à la racine du dépôt :
+
+```bash
+python3 scripts/import_music.py ~/Downloads/*.m4a
+```
+
+La commande copie les nouveaux fichiers dans `assets/audio/`, ignore les morceaux déjà importés et ajoute leurs titres dans `_data/radio.yml` avec l’artiste **hearty solo**. Pour un `.mp3`, `.ogg` ou `.wav`, passer son chemin à la commande à la place du motif `*.m4a`.
+
+Publier ensuite les changements du dépôt sur GitHub. Il est aussi possible d’ajouter un fichier directement dans le répertoire sur GitHub, puis d’inscrire son titre, son artiste et son chemin dans `_data/radio.yml`.
+
+La page `/radio/` affiche les titres dans l’ordre du fichier YAML. Le lecteur démarre uniquement après un clic et s’arrête lorsqu’on quitte la page.
