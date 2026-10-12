@@ -1,4 +1,4 @@
-# Notes de code
+# RHYZOM lab
 
 Jardin numérique en Markdown, publié avec Jekyll et GitHub Pages à l’adresse **https://bwik05.github.io/personal-site/**.
 
